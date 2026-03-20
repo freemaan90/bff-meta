@@ -201,6 +201,7 @@ export type TenantWhereInput = {
   apiKeys?: Prisma.ApiKeyListRelationFilter
   campaigns?: Prisma.CampaignListRelationFilter
   messages?: Prisma.MessageListRelationFilter
+  incomingMessages?: Prisma.IncomingMessageListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -214,6 +215,7 @@ export type TenantOrderByWithRelationInput = {
   apiKeys?: Prisma.ApiKeyOrderByRelationAggregateInput
   campaigns?: Prisma.CampaignOrderByRelationAggregateInput
   messages?: Prisma.MessageOrderByRelationAggregateInput
+  incomingMessages?: Prisma.IncomingMessageOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -230,6 +232,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   apiKeys?: Prisma.ApiKeyListRelationFilter
   campaigns?: Prisma.CampaignListRelationFilter
   messages?: Prisma.MessageListRelationFilter
+  incomingMessages?: Prisma.IncomingMessageListRelationFilter
 }, "id">
 
 export type TenantOrderByWithAggregationInput = {
@@ -269,6 +272,7 @@ export type TenantCreateInput = {
   apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -282,6 +286,7 @@ export type TenantUncheckedCreateInput = {
   apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -295,6 +300,7 @@ export type TenantUpdateInput = {
   apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -308,6 +314,7 @@ export type TenantUncheckedUpdateInput = {
   apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -429,6 +436,20 @@ export type TenantUpdateOneRequiredWithoutMessagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMessagesInput, Prisma.TenantUpdateWithoutMessagesInput>, Prisma.TenantUncheckedUpdateWithoutMessagesInput>
 }
 
+export type TenantCreateNestedOneWithoutIncomingMessagesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutIncomingMessagesInput, Prisma.TenantUncheckedCreateWithoutIncomingMessagesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutIncomingMessagesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutIncomingMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutIncomingMessagesInput, Prisma.TenantUncheckedCreateWithoutIncomingMessagesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutIncomingMessagesInput
+  upsert?: Prisma.TenantUpsertWithoutIncomingMessagesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutIncomingMessagesInput, Prisma.TenantUpdateWithoutIncomingMessagesInput>, Prisma.TenantUncheckedUpdateWithoutIncomingMessagesInput>
+}
+
 export type TenantCreateWithoutApiKeysInput = {
   id?: string
   name: string
@@ -439,6 +460,7 @@ export type TenantCreateWithoutApiKeysInput = {
   updatedAt?: Date | string
   campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutApiKeysInput = {
@@ -451,6 +473,7 @@ export type TenantUncheckedCreateWithoutApiKeysInput = {
   updatedAt?: Date | string
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutApiKeysInput = {
@@ -479,6 +502,7 @@ export type TenantUpdateWithoutApiKeysInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutApiKeysInput = {
@@ -491,6 +515,7 @@ export type TenantUncheckedUpdateWithoutApiKeysInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutCampaignsInput = {
@@ -503,6 +528,7 @@ export type TenantCreateWithoutCampaignsInput = {
   updatedAt?: Date | string
   apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCampaignsInput = {
@@ -515,6 +541,7 @@ export type TenantUncheckedCreateWithoutCampaignsInput = {
   updatedAt?: Date | string
   apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCampaignsInput = {
@@ -543,6 +570,7 @@ export type TenantUpdateWithoutCampaignsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCampaignsInput = {
@@ -555,6 +583,7 @@ export type TenantUncheckedUpdateWithoutCampaignsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessagesInput = {
@@ -567,6 +596,7 @@ export type TenantCreateWithoutMessagesInput = {
   updatedAt?: Date | string
   apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessagesInput = {
@@ -579,6 +609,7 @@ export type TenantUncheckedCreateWithoutMessagesInput = {
   updatedAt?: Date | string
   apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessagesInput = {
@@ -607,6 +638,7 @@ export type TenantUpdateWithoutMessagesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessagesInput = {
@@ -619,6 +651,75 @@ export type TenantUncheckedUpdateWithoutMessagesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
+  incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutIncomingMessagesInput = {
+  id?: string
+  name: string
+  wabaId?: string | null
+  phoneNumberId?: string | null
+  accessToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutIncomingMessagesInput = {
+  id?: string
+  name: string
+  wabaId?: string | null
+  phoneNumberId?: string | null
+  accessToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutIncomingMessagesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutIncomingMessagesInput, Prisma.TenantUncheckedCreateWithoutIncomingMessagesInput>
+}
+
+export type TenantUpsertWithoutIncomingMessagesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutIncomingMessagesInput, Prisma.TenantUncheckedUpdateWithoutIncomingMessagesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutIncomingMessagesInput, Prisma.TenantUncheckedCreateWithoutIncomingMessagesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutIncomingMessagesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutIncomingMessagesInput, Prisma.TenantUncheckedUpdateWithoutIncomingMessagesInput>
+}
+
+export type TenantUpdateWithoutIncomingMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutIncomingMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -630,12 +731,14 @@ export type TenantCountOutputType = {
   apiKeys: number
   campaigns: number
   messages: number
+  incomingMessages: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   apiKeys?: boolean | TenantCountOutputTypeCountApiKeysArgs
   campaigns?: boolean | TenantCountOutputTypeCountCampaignsArgs
   messages?: boolean | TenantCountOutputTypeCountMessagesArgs
+  incomingMessages?: boolean | TenantCountOutputTypeCountIncomingMessagesArgs
 }
 
 /**
@@ -669,6 +772,13 @@ export type TenantCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types
   where?: Prisma.MessageWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountIncomingMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncomingMessageWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -681,6 +791,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
   campaigns?: boolean | Prisma.Tenant$campaignsArgs<ExtArgs>
   messages?: boolean | Prisma.Tenant$messagesArgs<ExtArgs>
+  incomingMessages?: boolean | Prisma.Tenant$incomingMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -719,6 +830,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
   campaigns?: boolean | Prisma.Tenant$campaignsArgs<ExtArgs>
   messages?: boolean | Prisma.Tenant$messagesArgs<ExtArgs>
+  incomingMessages?: boolean | Prisma.Tenant$incomingMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -730,6 +842,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
     campaigns: Prisma.$CampaignPayload<ExtArgs>[]
     messages: Prisma.$MessagePayload<ExtArgs>[]
+    incomingMessages: Prisma.$IncomingMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1136,6 +1249,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   apiKeys<T extends Prisma.Tenant$apiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   campaigns<T extends Prisma.Tenant$campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messages<T extends Prisma.Tenant$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incomingMessages<T extends Prisma.Tenant$incomingMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$incomingMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomingMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1634,6 +1748,30 @@ export type Tenant$messagesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
+}
+
+/**
+ * Tenant.incomingMessages
+ */
+export type Tenant$incomingMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the IncomingMessage
+   */
+  select?: Prisma.IncomingMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the IncomingMessage
+   */
+  omit?: Prisma.IncomingMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncomingMessageInclude<ExtArgs> | null
+  where?: Prisma.IncomingMessageWhereInput
+  orderBy?: Prisma.IncomingMessageOrderByWithRelationInput | Prisma.IncomingMessageOrderByWithRelationInput[]
+  cursor?: Prisma.IncomingMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncomingMessageScalarFieldEnum | Prisma.IncomingMessageScalarFieldEnum[]
 }
 
 /**

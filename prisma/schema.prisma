@@ -20,6 +20,8 @@ model Tenant {
   apiKeys   ApiKey[]
   campaigns Campaign[]
   messages  Message[] // ← ESTA ES LA RELACIÓN FALTANTE
+    // 👇 Agregar esta línea
+  incomingMessages  IncomingMessage[]
 }
 
 model ApiKey {
@@ -72,4 +74,17 @@ enum MessageStatus {
   DELIVERED
   READ
   FAILED
+}
+model IncomingMessage {
+  id          String   @id @default(uuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  messageId   String   @unique
+  from        String
+  type        String
+  text        String?
+  raw         Json
+
+  createdAt   DateTime @default(now())
 }

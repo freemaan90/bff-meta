@@ -387,7 +387,8 @@ export const ModelName = {
   Tenant: 'Tenant',
   ApiKey: 'ApiKey',
   Campaign: 'Campaign',
-  Message: 'Message'
+  Message: 'Message',
+  IncomingMessage: 'IncomingMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "apiKey" | "campaign" | "message"
+    modelProps: "tenant" | "apiKey" | "campaign" | "message" | "incomingMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -703,6 +704,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    IncomingMessage: {
+      payload: Prisma.$IncomingMessagePayload<ExtArgs>
+      fields: Prisma.IncomingMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IncomingMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IncomingMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.IncomingMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IncomingMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>
+        }
+        findMany: {
+          args: Prisma.IncomingMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>[]
+        }
+        create: {
+          args: Prisma.IncomingMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>
+        }
+        createMany: {
+          args: Prisma.IncomingMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IncomingMessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>[]
+        }
+        delete: {
+          args: Prisma.IncomingMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>
+        }
+        update: {
+          args: Prisma.IncomingMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.IncomingMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IncomingMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IncomingMessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.IncomingMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncomingMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.IncomingMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIncomingMessage>
+        }
+        groupBy: {
+          args: Prisma.IncomingMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IncomingMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IncomingMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IncomingMessageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -794,6 +869,20 @@ export const MessageScalarFieldEnum = {
 export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
 
 
+export const IncomingMessageScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  messageId: 'messageId',
+  from: 'from',
+  type: 'type',
+  text: 'text',
+  raw: 'raw',
+  createdAt: 'createdAt'
+} as const
+
+export type IncomingMessageScalarFieldEnum = (typeof IncomingMessageScalarFieldEnum)[keyof typeof IncomingMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -808,6 +897,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1037,6 +1133,7 @@ export type GlobalOmitConfig = {
   apiKey?: Prisma.ApiKeyOmit
   campaign?: Prisma.CampaignOmit
   message?: Prisma.MessageOmit
+  incomingMessage?: Prisma.IncomingMessageOmit
 }
 
 /* Types for Logging */

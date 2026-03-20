@@ -54,7 +54,8 @@ export const ModelName = {
   Tenant: 'Tenant',
   ApiKey: 'ApiKey',
   Campaign: 'Campaign',
-  Message: 'Message'
+  Message: 'Message',
+  IncomingMessage: 'IncomingMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -125,6 +126,20 @@ export const MessageScalarFieldEnum = {
 export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
 
 
+export const IncomingMessageScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  messageId: 'messageId',
+  from: 'from',
+  type: 'type',
+  text: 'text',
+  raw: 'raw',
+  createdAt: 'createdAt'
+} as const
+
+export type IncomingMessageScalarFieldEnum = (typeof IncomingMessageScalarFieldEnum)[keyof typeof IncomingMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -139,6 +154,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

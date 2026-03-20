@@ -37,3 +37,8 @@ export type Campaign = Prisma.CampaignModel
  * 
  */
 export type Message = Prisma.MessageModel
+/**
+ * Model IncomingMessage
+ * 
+ */
+export type IncomingMessage = Prisma.IncomingMessageModel

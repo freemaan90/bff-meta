@@ -59,7 +59,36 @@ export class WebhookService {
     });
   }
 
-  async handleIncomingMessage(msg: any) {
-    console.log('Mensaje entrante:', msg);
+async handleIncomingMessage(msg: any) {
+  const messageId = msg.id;
+  const from = msg.from;
+  const type = msg.type;
+  const text = msg.text?.body ?? null;
+
+  // Meta no manda tenantId, lo sacamos del phoneNumberId
+  const phoneNumberId = msg?.context?.phone_number_id ?? null;
+
+  const tenant = await this.prisma.tenant.findFirst({
+    where: { phoneNumberId },
+  });
+
+  if (!tenant) {
+    console.warn('Mensaje entrante sin tenant asociado:', msg);
+    return;
   }
+
+  await this.prisma.incomingMessage.upsert({
+    where: { messageId },
+    create: {
+      messageId,
+      tenantId: tenant.id,
+      from,
+      type,
+      text,
+      raw: msg,
+    },
+    update: {}, // no actualizamos nada, solo evitamos duplicados
+  });
+}
+
 }

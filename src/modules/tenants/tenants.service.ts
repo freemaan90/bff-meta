@@ -28,4 +28,24 @@ export class TenantsService {
       data,
     });
   }
+
+  async delete(id: string) {
+    await this.prisma.incomingMessage.deleteMany({
+      where: { tenantId: id },
+    });
+    await this.prisma.message.deleteMany({
+      where: { tenantId: id },
+    });
+    await this.prisma.campaign.deleteMany({
+      where: { tenantId: id },
+    });
+
+    await this.prisma.apiKey.deleteMany({
+      where: { tenantId: id },
+    });
+
+    return this.prisma.tenant.delete({
+      where: { id },
+    });
+  }
 }
