@@ -8,5 +8,8 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Tenant'
 export type * from './models/ApiKey'
+export type * from './models/Campaign'
+export type * from './models/Message'
 export type * from './commonInputTypes'

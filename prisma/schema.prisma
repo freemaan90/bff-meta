@@ -1,16 +1,75 @@
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated"
-  binaryTargets  = ["native"]
+  provider      = "prisma-client"
+  output        = "../src/generated"
+  binaryTargets = ["native"]
 }
 
 datasource db {
   provider = "postgresql"
 }
 
+model Tenant {
+  id            String   @id @default(uuid())
+  name          String
+  wabaId        String?
+  phoneNumberId String?
+  accessToken   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  apiKeys   ApiKey[]
+  campaigns Campaign[]
+  messages  Message[] // ← ESTA ES LA RELACIÓN FALTANTE
+}
+
 model ApiKey {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   key       String   @unique
   tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
   createdAt DateTime @default(now())
+}
+
+model Campaign {
+  id        String         @id @default(uuid())
+  tenantId  String
+  tenant    Tenant         @relation(fields: [tenantId], references: [id])
+  template  String
+  language  String
+  total     Int            @default(0)
+  status    CampaignStatus @default(PENDING)
+  createdAt DateTime       @default(now())
+
+  messages Message[]
+}
+
+model Message {
+  id         String    @id @default(uuid())
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id])
+  tenantId   String
+  tenant     Tenant    @relation(fields: [tenantId], references: [id])
+
+  phone     String
+  messageId String?
+  status    MessageStatus @default(QUEUED)
+  error     String?
+  variables Json?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+enum CampaignStatus {
+  PENDING
+  RUNNING
+  FINISHED
+  FAILED
+}
+
+enum MessageStatus {
+  QUEUED
+  SENT
+  DELIVERED
+  READ
+  FAILED
 }

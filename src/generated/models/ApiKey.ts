@@ -174,6 +174,7 @@ export type ApiKeyWhereInput = {
   key?: Prisma.StringFilter<"ApiKey"> | string
   tenantId?: Prisma.StringFilter<"ApiKey"> | string
   createdAt?: Prisma.DateTimeFilter<"ApiKey"> | Date | string
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
 
 export type ApiKeyOrderByWithRelationInput = {
@@ -181,6 +182,7 @@ export type ApiKeyOrderByWithRelationInput = {
   key?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
 export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
@@ -191,6 +193,7 @@ export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ApiKeyWhereInput | Prisma.ApiKeyWhereInput[]
   tenantId?: Prisma.StringFilter<"ApiKey"> | string
   createdAt?: Prisma.DateTimeFilter<"ApiKey"> | Date | string
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id" | "key">
 
 export type ApiKeyOrderByWithAggregationInput = {
@@ -216,8 +219,8 @@ export type ApiKeyScalarWhereWithAggregatesInput = {
 export type ApiKeyCreateInput = {
   id?: string
   key: string
-  tenantId: string
   createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutApiKeysInput
 }
 
 export type ApiKeyUncheckedCreateInput = {
@@ -230,8 +233,8 @@ export type ApiKeyUncheckedCreateInput = {
 export type ApiKeyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
-  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutApiKeysNestedInput
 }
 
 export type ApiKeyUncheckedUpdateInput = {
@@ -251,7 +254,6 @@ export type ApiKeyCreateManyInput = {
 export type ApiKeyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
-  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -260,6 +262,16 @@ export type ApiKeyUncheckedUpdateManyInput = {
   key?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ApiKeyListRelationFilter = {
+  every?: Prisma.ApiKeyWhereInput
+  some?: Prisma.ApiKeyWhereInput
+  none?: Prisma.ApiKeyWhereInput
+}
+
+export type ApiKeyOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ApiKeyCountOrderByAggregateInput = {
@@ -283,12 +295,118 @@ export type ApiKeyMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type ApiKeyCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.ApiKeyCreateWithoutTenantInput, Prisma.ApiKeyUncheckedCreateWithoutTenantInput> | Prisma.ApiKeyCreateWithoutTenantInput[] | Prisma.ApiKeyUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ApiKeyCreateOrConnectWithoutTenantInput | Prisma.ApiKeyCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.ApiKeyCreateManyTenantInputEnvelope
+  connect?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type ApiKeyUncheckedCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.ApiKeyCreateWithoutTenantInput, Prisma.ApiKeyUncheckedCreateWithoutTenantInput> | Prisma.ApiKeyCreateWithoutTenantInput[] | Prisma.ApiKeyUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ApiKeyCreateOrConnectWithoutTenantInput | Prisma.ApiKeyCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.ApiKeyCreateManyTenantInputEnvelope
+  connect?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+}
+
+export type ApiKeyUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.ApiKeyCreateWithoutTenantInput, Prisma.ApiKeyUncheckedCreateWithoutTenantInput> | Prisma.ApiKeyCreateWithoutTenantInput[] | Prisma.ApiKeyUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ApiKeyCreateOrConnectWithoutTenantInput | Prisma.ApiKeyCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.ApiKeyUpsertWithWhereUniqueWithoutTenantInput | Prisma.ApiKeyUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.ApiKeyCreateManyTenantInputEnvelope
+  set?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  disconnect?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  delete?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  connect?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  update?: Prisma.ApiKeyUpdateWithWhereUniqueWithoutTenantInput | Prisma.ApiKeyUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.ApiKeyUpdateManyWithWhereWithoutTenantInput | Prisma.ApiKeyUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.ApiKeyScalarWhereInput | Prisma.ApiKeyScalarWhereInput[]
+}
+
+export type ApiKeyUncheckedUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.ApiKeyCreateWithoutTenantInput, Prisma.ApiKeyUncheckedCreateWithoutTenantInput> | Prisma.ApiKeyCreateWithoutTenantInput[] | Prisma.ApiKeyUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ApiKeyCreateOrConnectWithoutTenantInput | Prisma.ApiKeyCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.ApiKeyUpsertWithWhereUniqueWithoutTenantInput | Prisma.ApiKeyUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.ApiKeyCreateManyTenantInputEnvelope
+  set?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  disconnect?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  delete?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  connect?: Prisma.ApiKeyWhereUniqueInput | Prisma.ApiKeyWhereUniqueInput[]
+  update?: Prisma.ApiKeyUpdateWithWhereUniqueWithoutTenantInput | Prisma.ApiKeyUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.ApiKeyUpdateManyWithWhereWithoutTenantInput | Prisma.ApiKeyUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.ApiKeyScalarWhereInput | Prisma.ApiKeyScalarWhereInput[]
+}
+
+export type ApiKeyCreateWithoutTenantInput = {
+  id?: string
+  key: string
+  createdAt?: Date | string
+}
+
+export type ApiKeyUncheckedCreateWithoutTenantInput = {
+  id?: string
+  key: string
+  createdAt?: Date | string
+}
+
+export type ApiKeyCreateOrConnectWithoutTenantInput = {
+  where: Prisma.ApiKeyWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApiKeyCreateWithoutTenantInput, Prisma.ApiKeyUncheckedCreateWithoutTenantInput>
+}
+
+export type ApiKeyCreateManyTenantInputEnvelope = {
+  data: Prisma.ApiKeyCreateManyTenantInput | Prisma.ApiKeyCreateManyTenantInput[]
+  skipDuplicates?: boolean
+}
+
+export type ApiKeyUpsertWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.ApiKeyWhereUniqueInput
+  update: Prisma.XOR<Prisma.ApiKeyUpdateWithoutTenantInput, Prisma.ApiKeyUncheckedUpdateWithoutTenantInput>
+  create: Prisma.XOR<Prisma.ApiKeyCreateWithoutTenantInput, Prisma.ApiKeyUncheckedCreateWithoutTenantInput>
+}
+
+export type ApiKeyUpdateWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.ApiKeyWhereUniqueInput
+  data: Prisma.XOR<Prisma.ApiKeyUpdateWithoutTenantInput, Prisma.ApiKeyUncheckedUpdateWithoutTenantInput>
+}
+
+export type ApiKeyUpdateManyWithWhereWithoutTenantInput = {
+  where: Prisma.ApiKeyScalarWhereInput
+  data: Prisma.XOR<Prisma.ApiKeyUpdateManyMutationInput, Prisma.ApiKeyUncheckedUpdateManyWithoutTenantInput>
+}
+
+export type ApiKeyScalarWhereInput = {
+  AND?: Prisma.ApiKeyScalarWhereInput | Prisma.ApiKeyScalarWhereInput[]
+  OR?: Prisma.ApiKeyScalarWhereInput[]
+  NOT?: Prisma.ApiKeyScalarWhereInput | Prisma.ApiKeyScalarWhereInput[]
+  id?: Prisma.StringFilter<"ApiKey"> | string
+  key?: Prisma.StringFilter<"ApiKey"> | string
+  tenantId?: Prisma.StringFilter<"ApiKey"> | string
+  createdAt?: Prisma.DateTimeFilter<"ApiKey"> | Date | string
+}
+
+export type ApiKeyCreateManyTenantInput = {
+  id?: string
+  key: string
+  createdAt?: Date | string
+}
+
+export type ApiKeyUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ApiKeyUncheckedUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ApiKeyUncheckedUpdateManyWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -298,6 +416,7 @@ export type ApiKeySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   key?: boolean
   tenantId?: boolean
   createdAt?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["apiKey"]>
 
 export type ApiKeySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -305,6 +424,7 @@ export type ApiKeySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   key?: boolean
   tenantId?: boolean
   createdAt?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["apiKey"]>
 
 export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -312,6 +432,7 @@ export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   key?: boolean
   tenantId?: boolean
   createdAt?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["apiKey"]>
 
 export type ApiKeySelectScalar = {
@@ -322,10 +443,21 @@ export type ApiKeySelectScalar = {
 }
 
 export type ApiKeyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "tenantId" | "createdAt", ExtArgs["result"]["apiKey"]>
+export type ApiKeyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+}
+export type ApiKeyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+}
+export type ApiKeyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+}
 
 export type $ApiKeyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ApiKey"
-  objects: {}
+  objects: {
+    tenant: Prisma.$TenantPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     key: string
@@ -725,6 +857,7 @@ readonly fields: ApiKeyFieldRefs;
  */
 export interface Prisma__ApiKeyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -775,6 +908,10 @@ export type ApiKeyFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  /**
    * Filter, which ApiKey to fetch.
    */
   where: Prisma.ApiKeyWhereUniqueInput
@@ -793,6 +930,10 @@ export type ApiKeyFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  /**
    * Filter, which ApiKey to fetch.
    */
   where: Prisma.ApiKeyWhereUniqueInput
@@ -810,6 +951,10 @@ export type ApiKeyFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the ApiKey
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
   /**
    * Filter, which ApiKey to fetch.
    */
@@ -859,6 +1004,10 @@ export type ApiKeyFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  /**
    * Filter, which ApiKey to fetch.
    */
   where?: Prisma.ApiKeyWhereInput
@@ -906,6 +1055,10 @@ export type ApiKeyFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the ApiKey
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
   /**
    * Filter, which ApiKeys to fetch.
    */
@@ -955,6 +1108,10 @@ export type ApiKeyCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  /**
    * The data needed to create a ApiKey.
    */
   data: Prisma.XOR<Prisma.ApiKeyCreateInput, Prisma.ApiKeyUncheckedCreateInput>
@@ -988,6 +1145,10 @@ export type ApiKeyCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.ApiKeyCreateManyInput | Prisma.ApiKeyCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1002,6 +1163,10 @@ export type ApiKeyUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the ApiKey
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
   /**
    * The data needed to update a ApiKey.
    */
@@ -1054,6 +1219,10 @@ export type ApiKeyUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many ApiKeys to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1068,6 +1237,10 @@ export type ApiKeyUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the ApiKey
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
   /**
    * The filter to search for the ApiKey to update in case it exists.
    */
@@ -1094,6 +1267,10 @@ export type ApiKeyDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the ApiKey
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
   /**
    * Filter which ApiKey to delete.
    */
@@ -1126,4 +1303,8 @@ export type ApiKeyDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the ApiKey
    */
   omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
 }
