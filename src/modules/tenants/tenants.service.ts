@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { CreateTenantDto } from './dto/create-tenant.dto';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
+import { UpdateChatbotDto } from '../chatbot/dto/update-chatbot.dto';
 
 @Injectable()
 export class TenantsService {
@@ -48,4 +49,19 @@ export class TenantsService {
       where: { id },
     });
   }
+
+  async updateChatbot(id: string, dto: UpdateChatbotDto) {
+  await this.findOne(id); // valida que exista
+
+  return this.prisma.tenant.update({
+    where: { id },
+    data: {
+      chatbotEnabled: dto.chatbotEnabled,
+      chatbotMode: dto.chatbotMode,
+      chatbotRules: dto.chatbotRules,
+      chatbotPrompt: dto.chatbotPrompt,
+    },
+  });
+}
+
 }

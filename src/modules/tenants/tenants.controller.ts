@@ -1,7 +1,16 @@
-import { Controller, Post, Get, Patch, Param, Body, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Param,
+  Body,
+  Delete,
+} from '@nestjs/common';
 import { TenantsService } from './tenants.service';
 import { CreateTenantDto } from './dto/create-tenant.dto';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
+import { UpdateChatbotDto } from '../chatbot/dto/update-chatbot.dto';
 
 @Controller('tenants')
 export class TenantsController {
@@ -28,7 +37,12 @@ export class TenantsController {
   }
 
   @Delete(`:id`)
-  delete(@Param('id')id: string) {
-    return this.tenantsService.delete(id)
+  delete(@Param('id') id: string) {
+    return this.tenantsService.delete(id);
+  }
+
+  @Patch(':id/chatbot')
+  updateChatbot(@Param('id') id: string, @Body() dto: UpdateChatbotDto) {
+    return this.tenantsService.updateChatbot(id, dto);
   }
 }
