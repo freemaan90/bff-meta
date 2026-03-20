@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { ChatbotService } from '../chatbot/chatbot.service';
 
 @Injectable()
 export class WebhookService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly chatbotService: ChatbotService,
+  ) {}
 
   verifyWebhook(mode: string, token: string, challenge: string) {
     const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN;
@@ -59,36 +63,38 @@ export class WebhookService {
     });
   }
 
-async handleIncomingMessage(msg: any) {
-  const messageId = msg.id;
-  const from = msg.from;
-  const type = msg.type;
-  const text = msg.text?.body ?? null;
+  async handleIncomingMessage(msg: any) {
+    const messageId = msg.id;
+    const from = msg.from;
+    const type = msg.type;
+    const text = msg.text?.body ?? null;
 
-  // Meta no manda tenantId, lo sacamos del phoneNumberId
-  const phoneNumberId = msg?.context?.phone_number_id ?? null;
+    // Meta no manda tenantId, lo sacamos del phoneNumberId
+    const phoneNumberId = msg?.context?.phone_number_id ?? null;
 
-  const tenant = await this.prisma.tenant.findFirst({
-    where: { phoneNumberId },
-  });
+    const tenant = await this.prisma.tenant.findFirst({
+      where: { phoneNumberId },
+    });
 
-  if (!tenant) {
-    console.warn('Mensaje entrante sin tenant asociado:', msg);
-    return;
+    if (!tenant) {
+      console.warn('Mensaje entrante sin tenant asociado:', msg);
+      return;
+    }
+
+    await this.prisma.incomingMessage.upsert({
+      where: { messageId },
+      create: {
+        messageId,
+        tenantId: tenant.id,
+        from,
+        type,
+        text,
+        raw: msg,
+      },
+      update: {}, // no actualizamos nada, solo evitamos duplicados
+    });
+
+    // Chatbot
+    await this.chatbotService.handleIncomingMessage(msg, tenant);
   }
-
-  await this.prisma.incomingMessage.upsert({
-    where: { messageId },
-    create: {
-      messageId,
-      tenantId: tenant.id,
-      from,
-      type,
-      text,
-      raw: msg,
-    },
-    update: {}, // no actualizamos nada, solo evitamos duplicados
-  });
-}
-
 }

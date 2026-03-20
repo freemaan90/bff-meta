@@ -27,9 +27,11 @@ export type AggregateTenant = {
 export type TenantMinAggregateOutputType = {
   id: string | null
   name: string | null
-  wabaId: string | null
   phoneNumberId: string | null
   accessToken: string | null
+  chatbotEnabled: boolean | null
+  chatbotMode: string | null
+  chatbotPrompt: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -37,9 +39,11 @@ export type TenantMinAggregateOutputType = {
 export type TenantMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  wabaId: string | null
   phoneNumberId: string | null
   accessToken: string | null
+  chatbotEnabled: boolean | null
+  chatbotMode: string | null
+  chatbotPrompt: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -47,9 +51,12 @@ export type TenantMaxAggregateOutputType = {
 export type TenantCountAggregateOutputType = {
   id: number
   name: number
-  wabaId: number
   phoneNumberId: number
   accessToken: number
+  chatbotEnabled: number
+  chatbotMode: number
+  chatbotRules: number
+  chatbotPrompt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -59,9 +66,11 @@ export type TenantCountAggregateOutputType = {
 export type TenantMinAggregateInputType = {
   id?: true
   name?: true
-  wabaId?: true
   phoneNumberId?: true
   accessToken?: true
+  chatbotEnabled?: true
+  chatbotMode?: true
+  chatbotPrompt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -69,9 +78,11 @@ export type TenantMinAggregateInputType = {
 export type TenantMaxAggregateInputType = {
   id?: true
   name?: true
-  wabaId?: true
   phoneNumberId?: true
   accessToken?: true
+  chatbotEnabled?: true
+  chatbotMode?: true
+  chatbotPrompt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -79,9 +90,12 @@ export type TenantMaxAggregateInputType = {
 export type TenantCountAggregateInputType = {
   id?: true
   name?: true
-  wabaId?: true
   phoneNumberId?: true
   accessToken?: true
+  chatbotEnabled?: true
+  chatbotMode?: true
+  chatbotRules?: true
+  chatbotPrompt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -162,9 +176,12 @@ export type TenantGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type TenantGroupByOutputType = {
   id: string
   name: string
-  wabaId: string | null
   phoneNumberId: string | null
   accessToken: string | null
+  chatbotEnabled: boolean
+  chatbotMode: string
+  chatbotRules: runtime.JsonValue | null
+  chatbotPrompt: string | null
   createdAt: Date
   updatedAt: Date
   _count: TenantCountAggregateOutputType | null
@@ -193,29 +210,35 @@ export type TenantWhereInput = {
   NOT?: Prisma.TenantWhereInput | Prisma.TenantWhereInput[]
   id?: Prisma.StringFilter<"Tenant"> | string
   name?: Prisma.StringFilter<"Tenant"> | string
-  wabaId?: Prisma.StringNullableFilter<"Tenant"> | string | null
   phoneNumberId?: Prisma.StringNullableFilter<"Tenant"> | string | null
   accessToken?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  chatbotEnabled?: Prisma.BoolFilter<"Tenant"> | boolean
+  chatbotMode?: Prisma.StringFilter<"Tenant"> | string
+  chatbotRules?: Prisma.JsonNullableFilter<"Tenant">
+  chatbotPrompt?: Prisma.StringNullableFilter<"Tenant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  apiKeys?: Prisma.ApiKeyListRelationFilter
-  campaigns?: Prisma.CampaignListRelationFilter
-  messages?: Prisma.MessageListRelationFilter
   incomingMessages?: Prisma.IncomingMessageListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
+  campaigns?: Prisma.CampaignListRelationFilter
+  apiKeys?: Prisma.ApiKeyListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  wabaId?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumberId?: Prisma.SortOrderInput | Prisma.SortOrder
   accessToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  chatbotEnabled?: Prisma.SortOrder
+  chatbotMode?: Prisma.SortOrder
+  chatbotRules?: Prisma.SortOrderInput | Prisma.SortOrder
+  chatbotPrompt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  apiKeys?: Prisma.ApiKeyOrderByRelationAggregateInput
-  campaigns?: Prisma.CampaignOrderByRelationAggregateInput
-  messages?: Prisma.MessageOrderByRelationAggregateInput
   incomingMessages?: Prisma.IncomingMessageOrderByRelationAggregateInput
+  messages?: Prisma.MessageOrderByRelationAggregateInput
+  campaigns?: Prisma.CampaignOrderByRelationAggregateInput
+  apiKeys?: Prisma.ApiKeyOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -224,23 +247,29 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TenantWhereInput[]
   NOT?: Prisma.TenantWhereInput | Prisma.TenantWhereInput[]
   name?: Prisma.StringFilter<"Tenant"> | string
-  wabaId?: Prisma.StringNullableFilter<"Tenant"> | string | null
   phoneNumberId?: Prisma.StringNullableFilter<"Tenant"> | string | null
   accessToken?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  chatbotEnabled?: Prisma.BoolFilter<"Tenant"> | boolean
+  chatbotMode?: Prisma.StringFilter<"Tenant"> | string
+  chatbotRules?: Prisma.JsonNullableFilter<"Tenant">
+  chatbotPrompt?: Prisma.StringNullableFilter<"Tenant"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
-  apiKeys?: Prisma.ApiKeyListRelationFilter
-  campaigns?: Prisma.CampaignListRelationFilter
-  messages?: Prisma.MessageListRelationFilter
   incomingMessages?: Prisma.IncomingMessageListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
+  campaigns?: Prisma.CampaignListRelationFilter
+  apiKeys?: Prisma.ApiKeyListRelationFilter
 }, "id">
 
 export type TenantOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  wabaId?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumberId?: Prisma.SortOrderInput | Prisma.SortOrder
   accessToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  chatbotEnabled?: Prisma.SortOrder
+  chatbotMode?: Prisma.SortOrder
+  chatbotRules?: Prisma.SortOrderInput | Prisma.SortOrder
+  chatbotPrompt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TenantCountOrderByAggregateInput
@@ -254,9 +283,12 @@ export type TenantScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TenantScalarWhereWithAggregatesInput | Prisma.TenantScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   name?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
-  wabaId?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   phoneNumberId?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   accessToken?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
+  chatbotEnabled?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
+  chatbotMode?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
+  chatbotRules?: Prisma.JsonNullableWithAggregatesFilter<"Tenant">
+  chatbotPrompt?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
 }
@@ -264,65 +296,80 @@ export type TenantScalarWhereWithAggregatesInput = {
 export type TenantCreateInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
-  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
-  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
-  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
-  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
-  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -330,9 +377,12 @@ export type TenantCreateManyInput = {
 export type TenantUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -340,9 +390,12 @@ export type TenantUpdateManyMutationInput = {
 export type TenantUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -350,9 +403,12 @@ export type TenantUncheckedUpdateManyInput = {
 export type TenantCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  wabaId?: Prisma.SortOrder
   phoneNumberId?: Prisma.SortOrder
   accessToken?: Prisma.SortOrder
+  chatbotEnabled?: Prisma.SortOrder
+  chatbotMode?: Prisma.SortOrder
+  chatbotRules?: Prisma.SortOrder
+  chatbotPrompt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -360,9 +416,11 @@ export type TenantCountOrderByAggregateInput = {
 export type TenantMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  wabaId?: Prisma.SortOrder
   phoneNumberId?: Prisma.SortOrder
   accessToken?: Prisma.SortOrder
+  chatbotEnabled?: Prisma.SortOrder
+  chatbotMode?: Prisma.SortOrder
+  chatbotPrompt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -370,9 +428,11 @@ export type TenantMaxOrderByAggregateInput = {
 export type TenantMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  wabaId?: Prisma.SortOrder
   phoneNumberId?: Prisma.SortOrder
   accessToken?: Prisma.SortOrder
+  chatbotEnabled?: Prisma.SortOrder
+  chatbotMode?: Prisma.SortOrder
+  chatbotPrompt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -388,6 +448,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -453,27 +517,33 @@ export type TenantUpdateOneRequiredWithoutIncomingMessagesNestedInput = {
 export type TenantCreateWithoutApiKeysInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
-  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutApiKeysInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutApiKeysInput = {
@@ -495,53 +565,65 @@ export type TenantUpdateToOneWithWhereWithoutApiKeysInput = {
 export type TenantUpdateWithoutApiKeysInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutApiKeysInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutCampaignsInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
-  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutCampaignsInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutCampaignsInput = {
@@ -563,53 +645,65 @@ export type TenantUpdateToOneWithWhereWithoutCampaignsInput = {
 export type TenantUpdateWithoutCampaignsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
-  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutCampaignsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessagesInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
-  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessagesInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
-  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
   incomingMessages?: Prisma.IncomingMessageUncheckedCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessagesInput = {
@@ -631,53 +725,65 @@ export type TenantUpdateToOneWithWhereWithoutMessagesInput = {
 export type TenantUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
-  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
-  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
   incomingMessages?: Prisma.IncomingMessageUncheckedUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutIncomingMessagesInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
-  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutIncomingMessagesInput = {
   id?: string
   name: string
-  wabaId?: string | null
   phoneNumberId?: string | null
   accessToken?: string | null
+  chatbotEnabled?: boolean
+  chatbotMode?: string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
-  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutTenantInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTenantInput
+  apiKeys?: Prisma.ApiKeyUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutIncomingMessagesInput = {
@@ -699,27 +805,33 @@ export type TenantUpdateToOneWithWhereWithoutIncomingMessagesInput = {
 export type TenantUpdateWithoutIncomingMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
-  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutIncomingMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  wabaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accessToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatbotEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  chatbotMode?: Prisma.StringFieldUpdateOperationsInput | string
+  chatbotRules?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  chatbotPrompt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
-  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutTenantNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTenantNestedInput
+  apiKeys?: Prisma.ApiKeyUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -728,17 +840,17 @@ export type TenantUncheckedUpdateWithoutIncomingMessagesInput = {
  */
 
 export type TenantCountOutputType = {
-  apiKeys: number
-  campaigns: number
-  messages: number
   incomingMessages: number
+  messages: number
+  campaigns: number
+  apiKeys: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  apiKeys?: boolean | TenantCountOutputTypeCountApiKeysArgs
-  campaigns?: boolean | TenantCountOutputTypeCountCampaignsArgs
-  messages?: boolean | TenantCountOutputTypeCountMessagesArgs
   incomingMessages?: boolean | TenantCountOutputTypeCountIncomingMessagesArgs
+  messages?: boolean | TenantCountOutputTypeCountMessagesArgs
+  campaigns?: boolean | TenantCountOutputTypeCountCampaignsArgs
+  apiKeys?: boolean | TenantCountOutputTypeCountApiKeysArgs
 }
 
 /**
@@ -754,15 +866,8 @@ export type TenantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * TenantCountOutputType without action
  */
-export type TenantCountOutputTypeCountApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ApiKeyWhereInput
-}
-
-/**
- * TenantCountOutputType without action
- */
-export type TenantCountOutputTypeCountCampaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CampaignWhereInput
+export type TenantCountOutputTypeCountIncomingMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncomingMessageWhereInput
 }
 
 /**
@@ -775,32 +880,45 @@ export type TenantCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types
 /**
  * TenantCountOutputType without action
  */
-export type TenantCountOutputTypeCountIncomingMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.IncomingMessageWhereInput
+export type TenantCountOutputTypeCountCampaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CampaignWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApiKeyWhereInput
 }
 
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  wabaId?: boolean
   phoneNumberId?: boolean
   accessToken?: boolean
+  chatbotEnabled?: boolean
+  chatbotMode?: boolean
+  chatbotRules?: boolean
+  chatbotPrompt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
-  campaigns?: boolean | Prisma.Tenant$campaignsArgs<ExtArgs>
-  messages?: boolean | Prisma.Tenant$messagesArgs<ExtArgs>
   incomingMessages?: boolean | Prisma.Tenant$incomingMessagesArgs<ExtArgs>
+  messages?: boolean | Prisma.Tenant$messagesArgs<ExtArgs>
+  campaigns?: boolean | Prisma.Tenant$campaignsArgs<ExtArgs>
+  apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
 export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  wabaId?: boolean
   phoneNumberId?: boolean
   accessToken?: boolean
+  chatbotEnabled?: boolean
+  chatbotMode?: boolean
+  chatbotRules?: boolean
+  chatbotPrompt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -808,9 +926,12 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  wabaId?: boolean
   phoneNumberId?: boolean
   accessToken?: boolean
+  chatbotEnabled?: boolean
+  chatbotMode?: boolean
+  chatbotRules?: boolean
+  chatbotPrompt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -818,19 +939,22 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type TenantSelectScalar = {
   id?: boolean
   name?: boolean
-  wabaId?: boolean
   phoneNumberId?: boolean
   accessToken?: boolean
+  chatbotEnabled?: boolean
+  chatbotMode?: boolean
+  chatbotRules?: boolean
+  chatbotPrompt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "wabaId" | "phoneNumberId" | "accessToken" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phoneNumberId" | "accessToken" | "chatbotEnabled" | "chatbotMode" | "chatbotRules" | "chatbotPrompt" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
-  campaigns?: boolean | Prisma.Tenant$campaignsArgs<ExtArgs>
-  messages?: boolean | Prisma.Tenant$messagesArgs<ExtArgs>
   incomingMessages?: boolean | Prisma.Tenant$incomingMessagesArgs<ExtArgs>
+  messages?: boolean | Prisma.Tenant$messagesArgs<ExtArgs>
+  campaigns?: boolean | Prisma.Tenant$campaignsArgs<ExtArgs>
+  apiKeys?: boolean | Prisma.Tenant$apiKeysArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -839,17 +963,20 @@ export type TenantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tenant"
   objects: {
-    apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
-    campaigns: Prisma.$CampaignPayload<ExtArgs>[]
-    messages: Prisma.$MessagePayload<ExtArgs>[]
     incomingMessages: Prisma.$IncomingMessagePayload<ExtArgs>[]
+    messages: Prisma.$MessagePayload<ExtArgs>[]
+    campaigns: Prisma.$CampaignPayload<ExtArgs>[]
+    apiKeys: Prisma.$ApiKeyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    wabaId: string | null
     phoneNumberId: string | null
     accessToken: string | null
+    chatbotEnabled: boolean
+    chatbotMode: string
+    chatbotRules: runtime.JsonValue | null
+    chatbotPrompt: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["tenant"]>
@@ -1246,10 +1373,10 @@ readonly fields: TenantFieldRefs;
  */
 export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  apiKeys<T extends Prisma.Tenant$apiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  campaigns<T extends Prisma.Tenant$campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  messages<T extends Prisma.Tenant$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   incomingMessages<T extends Prisma.Tenant$incomingMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$incomingMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomingMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messages<T extends Prisma.Tenant$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaigns<T extends Prisma.Tenant$campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  apiKeys<T extends Prisma.Tenant$apiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1281,9 +1408,12 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
 export interface TenantFieldRefs {
   readonly id: Prisma.FieldRef<"Tenant", 'String'>
   readonly name: Prisma.FieldRef<"Tenant", 'String'>
-  readonly wabaId: Prisma.FieldRef<"Tenant", 'String'>
   readonly phoneNumberId: Prisma.FieldRef<"Tenant", 'String'>
   readonly accessToken: Prisma.FieldRef<"Tenant", 'String'>
+  readonly chatbotEnabled: Prisma.FieldRef<"Tenant", 'Boolean'>
+  readonly chatbotMode: Prisma.FieldRef<"Tenant", 'String'>
+  readonly chatbotRules: Prisma.FieldRef<"Tenant", 'Json'>
+  readonly chatbotPrompt: Prisma.FieldRef<"Tenant", 'String'>
   readonly createdAt: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tenant", 'DateTime'>
 }
@@ -1679,51 +1809,27 @@ export type TenantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Tenant.apiKeys
+ * Tenant.incomingMessages
  */
-export type Tenant$apiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Tenant$incomingMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ApiKey
+   * Select specific fields to fetch from the IncomingMessage
    */
-  select?: Prisma.ApiKeySelect<ExtArgs> | null
+  select?: Prisma.IncomingMessageSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ApiKey
+   * Omit specific fields from the IncomingMessage
    */
-  omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  omit?: Prisma.IncomingMessageOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ApiKeyInclude<ExtArgs> | null
-  where?: Prisma.ApiKeyWhereInput
-  orderBy?: Prisma.ApiKeyOrderByWithRelationInput | Prisma.ApiKeyOrderByWithRelationInput[]
-  cursor?: Prisma.ApiKeyWhereUniqueInput
+  include?: Prisma.IncomingMessageInclude<ExtArgs> | null
+  where?: Prisma.IncomingMessageWhereInput
+  orderBy?: Prisma.IncomingMessageOrderByWithRelationInput | Prisma.IncomingMessageOrderByWithRelationInput[]
+  cursor?: Prisma.IncomingMessageWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ApiKeyScalarFieldEnum | Prisma.ApiKeyScalarFieldEnum[]
-}
-
-/**
- * Tenant.campaigns
- */
-export type Tenant$campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Campaign
-   */
-  select?: Prisma.CampaignSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Campaign
-   */
-  omit?: Prisma.CampaignOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CampaignInclude<ExtArgs> | null
-  where?: Prisma.CampaignWhereInput
-  orderBy?: Prisma.CampaignOrderByWithRelationInput | Prisma.CampaignOrderByWithRelationInput[]
-  cursor?: Prisma.CampaignWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CampaignScalarFieldEnum | Prisma.CampaignScalarFieldEnum[]
+  distinct?: Prisma.IncomingMessageScalarFieldEnum | Prisma.IncomingMessageScalarFieldEnum[]
 }
 
 /**
@@ -1751,27 +1857,51 @@ export type Tenant$messagesArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Tenant.incomingMessages
+ * Tenant.campaigns
  */
-export type Tenant$incomingMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Tenant$campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the IncomingMessage
+   * Select specific fields to fetch from the Campaign
    */
-  select?: Prisma.IncomingMessageSelect<ExtArgs> | null
+  select?: Prisma.CampaignSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the IncomingMessage
+   * Omit specific fields from the Campaign
    */
-  omit?: Prisma.IncomingMessageOmit<ExtArgs> | null
+  omit?: Prisma.CampaignOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.IncomingMessageInclude<ExtArgs> | null
-  where?: Prisma.IncomingMessageWhereInput
-  orderBy?: Prisma.IncomingMessageOrderByWithRelationInput | Prisma.IncomingMessageOrderByWithRelationInput[]
-  cursor?: Prisma.IncomingMessageWhereUniqueInput
+  include?: Prisma.CampaignInclude<ExtArgs> | null
+  where?: Prisma.CampaignWhereInput
+  orderBy?: Prisma.CampaignOrderByWithRelationInput | Prisma.CampaignOrderByWithRelationInput[]
+  cursor?: Prisma.CampaignWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.IncomingMessageScalarFieldEnum | Prisma.IncomingMessageScalarFieldEnum[]
+  distinct?: Prisma.CampaignScalarFieldEnum | Prisma.CampaignScalarFieldEnum[]
+}
+
+/**
+ * Tenant.apiKeys
+ */
+export type Tenant$apiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApiKey
+   */
+  select?: Prisma.ApiKeySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApiKey
+   */
+  omit?: Prisma.ApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApiKeyInclude<ExtArgs> | null
+  where?: Prisma.ApiKeyWhereInput
+  orderBy?: Prisma.ApiKeyOrderByWithRelationInput | Prisma.ApiKeyOrderByWithRelationInput[]
+  cursor?: Prisma.ApiKeyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApiKeyScalarFieldEnum | Prisma.ApiKeyScalarFieldEnum[]
 }
 
 /**

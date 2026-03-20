@@ -9,20 +9,25 @@ datasource db {
 }
 
 model Tenant {
-  id            String   @id @default(uuid())
-  name          String
-  wabaId        String?
-  phoneNumberId String?
-  accessToken   String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id              String   @id @default(uuid())
+  name            String
+  phoneNumberId   String?
+  accessToken     String?
 
-  apiKeys   ApiKey[]
-  campaigns Campaign[]
-  messages  Message[] // ← ESTA ES LA RELACIÓN FALTANTE
-    // 👇 Agregar esta línea
-  incomingMessages  IncomingMessage[]
+  chatbotEnabled  Boolean  @default(false)
+  chatbotMode     String   @default("rules") // "rules" | "ai"
+  chatbotRules    Json?    // [{ contains: "hola", reply: "Hola! ¿Cómo estás?" }]
+  chatbotPrompt   String?  // prompt base para IA
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  incomingMessages IncomingMessage[]
+  messages         Message[]
+  campaigns        Campaign[]
+  apiKeys          ApiKey[]
 }
+
 
 model ApiKey {
   id        String   @id @default(uuid())

@@ -8,6 +8,7 @@ import { TenantsModule } from './modules/tenants/tenants.module';
 import { WhatsappCoreModule } from './modules/whatsapp-core/whatsapp-core.module';
 import { WebhooksModule } from './modules/webhooks/webhooks.module';
 import { CampaignsModule } from './modules/campaigns/campaigns.module';
+import { ChatbotModule } from './modules/chatbot/chatbot.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { CampaignsModule } from './modules/campaigns/campaigns.module';
     TenantsModule,
     WhatsappCoreModule,
     WebhooksModule,
-    CampaignsModule
+    CampaignsModule,
+    ChatbotModule
   ],
   controllers: [AppController],
   providers: [AppService],
