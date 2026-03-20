@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { HealthModule } from './health/health.module';
 import { TenantsModule } from './modules/tenants/tenants.module';
 import { WhatsappCoreModule } from './modules/whatsapp-core/whatsapp-core.module';
+import { WebhooksModule } from './modules/webhooks/webhooks.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { WhatsappCoreModule } from './modules/whatsapp-core/whatsapp-core.module
     HealthModule,
     TenantsModule,
     WhatsappCoreModule,
+    WebhooksModule
   ],
   controllers: [AppController],
   providers: [AppService],
