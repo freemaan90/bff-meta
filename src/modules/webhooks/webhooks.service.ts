@@ -45,16 +45,21 @@ export class WebhookService {
 
   async handleStatus(status: any) {
     const messageId = status.id;
-    const statusName = status.status; // sent, delivered, read, failed
+    const newStatus = status.status.toUpperCase(); // sent, delivered, read, failed
+
+    // Si Meta manda error
+    const error = status.errors?.[0]?.message ?? null;
 
     await this.prisma.message.updateMany({
       where: { messageId },
-      data: { status: statusName.toUpperCase() },
+      data: {
+        status: newStatus,
+        error,
+      },
     });
   }
 
   async handleIncomingMessage(msg: any) {
     console.log('Mensaje entrante:', msg);
-    // Más adelante podés guardar o responder automáticamente
   }
 }

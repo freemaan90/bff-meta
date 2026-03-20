@@ -1,16 +1,18 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreateTenantDto {
   @IsString()
-  @IsNotEmpty()
   name: string;
+
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   wabaId?: string;
+
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   phoneNumberId?: string;
+
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   accessToken?: string;
 }

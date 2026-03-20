@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
 import { WebhookService } from './webhooks.service';
 
-@Controller('webhooks')
+@Controller('webhook')
 export class WebhookController {
   constructor(private readonly webhookService: WebhookService) {}
 
