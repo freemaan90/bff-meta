@@ -1,0 +1,16 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated"
+  binaryTargets  = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  tenantId  String
+  createdAt DateTime @default(now())
+}
