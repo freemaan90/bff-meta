@@ -9,6 +9,7 @@ import { WhatsappCoreModule } from './modules/whatsapp-core/whatsapp-core.module
 import { WebhooksModule } from './modules/webhooks/webhooks.module';
 import { CampaignsModule } from './modules/campaigns/campaigns.module';
 import { ChatbotModule } from './modules/chatbot/chatbot.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -19,7 +20,10 @@ import { ChatbotModule } from './modules/chatbot/chatbot.module';
     WhatsappCoreModule,
     WebhooksModule,
     CampaignsModule,
-    ChatbotModule
+    ChatbotModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

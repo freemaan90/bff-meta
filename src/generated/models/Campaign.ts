@@ -28,10 +28,14 @@ export type AggregateCampaign = {
 
 export type CampaignAvgAggregateOutputType = {
   total: number | null
+  sentCount: number | null
+  failedCount: number | null
 }
 
 export type CampaignSumAggregateOutputType = {
   total: number | null
+  sentCount: number | null
+  failedCount: number | null
 }
 
 export type CampaignMinAggregateOutputType = {
@@ -40,6 +44,8 @@ export type CampaignMinAggregateOutputType = {
   template: string | null
   language: string | null
   total: number | null
+  sentCount: number | null
+  failedCount: number | null
   status: $Enums.CampaignStatus | null
   createdAt: Date | null
 }
@@ -50,6 +56,8 @@ export type CampaignMaxAggregateOutputType = {
   template: string | null
   language: string | null
   total: number | null
+  sentCount: number | null
+  failedCount: number | null
   status: $Enums.CampaignStatus | null
   createdAt: Date | null
 }
@@ -60,6 +68,8 @@ export type CampaignCountAggregateOutputType = {
   template: number
   language: number
   total: number
+  sentCount: number
+  failedCount: number
   status: number
   createdAt: number
   _all: number
@@ -68,10 +78,14 @@ export type CampaignCountAggregateOutputType = {
 
 export type CampaignAvgAggregateInputType = {
   total?: true
+  sentCount?: true
+  failedCount?: true
 }
 
 export type CampaignSumAggregateInputType = {
   total?: true
+  sentCount?: true
+  failedCount?: true
 }
 
 export type CampaignMinAggregateInputType = {
@@ -80,6 +94,8 @@ export type CampaignMinAggregateInputType = {
   template?: true
   language?: true
   total?: true
+  sentCount?: true
+  failedCount?: true
   status?: true
   createdAt?: true
 }
@@ -90,6 +106,8 @@ export type CampaignMaxAggregateInputType = {
   template?: true
   language?: true
   total?: true
+  sentCount?: true
+  failedCount?: true
   status?: true
   createdAt?: true
 }
@@ -100,6 +118,8 @@ export type CampaignCountAggregateInputType = {
   template?: true
   language?: true
   total?: true
+  sentCount?: true
+  failedCount?: true
   status?: true
   createdAt?: true
   _all?: true
@@ -197,6 +217,8 @@ export type CampaignGroupByOutputType = {
   template: string
   language: string
   total: number
+  sentCount: number
+  failedCount: number
   status: $Enums.CampaignStatus
   createdAt: Date
   _count: CampaignCountAggregateOutputType | null
@@ -230,10 +252,12 @@ export type CampaignWhereInput = {
   template?: Prisma.StringFilter<"Campaign"> | string
   language?: Prisma.StringFilter<"Campaign"> | string
   total?: Prisma.IntFilter<"Campaign"> | number
+  sentCount?: Prisma.IntFilter<"Campaign"> | number
+  failedCount?: Prisma.IntFilter<"Campaign"> | number
   status?: Prisma.EnumCampaignStatusFilter<"Campaign"> | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFilter<"Campaign"> | Date | string
-  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   messages?: Prisma.MessageListRelationFilter
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
 
 export type CampaignOrderByWithRelationInput = {
@@ -242,10 +266,12 @@ export type CampaignOrderByWithRelationInput = {
   template?: Prisma.SortOrder
   language?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  tenant?: Prisma.TenantOrderByWithRelationInput
   messages?: Prisma.MessageOrderByRelationAggregateInput
+  tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
 export type CampaignWhereUniqueInput = Prisma.AtLeast<{
@@ -257,10 +283,12 @@ export type CampaignWhereUniqueInput = Prisma.AtLeast<{
   template?: Prisma.StringFilter<"Campaign"> | string
   language?: Prisma.StringFilter<"Campaign"> | string
   total?: Prisma.IntFilter<"Campaign"> | number
+  sentCount?: Prisma.IntFilter<"Campaign"> | number
+  failedCount?: Prisma.IntFilter<"Campaign"> | number
   status?: Prisma.EnumCampaignStatusFilter<"Campaign"> | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFilter<"Campaign"> | Date | string
-  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   messages?: Prisma.MessageListRelationFilter
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id">
 
 export type CampaignOrderByWithAggregationInput = {
@@ -269,6 +297,8 @@ export type CampaignOrderByWithAggregationInput = {
   template?: Prisma.SortOrder
   language?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.CampaignCountOrderByAggregateInput
@@ -287,6 +317,8 @@ export type CampaignScalarWhereWithAggregatesInput = {
   template?: Prisma.StringWithAggregatesFilter<"Campaign"> | string
   language?: Prisma.StringWithAggregatesFilter<"Campaign"> | string
   total?: Prisma.IntWithAggregatesFilter<"Campaign"> | number
+  sentCount?: Prisma.IntWithAggregatesFilter<"Campaign"> | number
+  failedCount?: Prisma.IntWithAggregatesFilter<"Campaign"> | number
   status?: Prisma.EnumCampaignStatusWithAggregatesFilter<"Campaign"> | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Campaign"> | Date | string
 }
@@ -296,10 +328,12 @@ export type CampaignCreateInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
-  tenant: Prisma.TenantCreateNestedOneWithoutCampaignsInput
   messages?: Prisma.MessageCreateNestedManyWithoutCampaignInput
+  tenant: Prisma.TenantCreateNestedOneWithoutCampaignsInput
 }
 
 export type CampaignUncheckedCreateInput = {
@@ -308,6 +342,8 @@ export type CampaignUncheckedCreateInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutCampaignInput
@@ -318,10 +354,12 @@ export type CampaignUpdateInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutCampaignsNestedInput
   messages?: Prisma.MessageUpdateManyWithoutCampaignNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutCampaignsNestedInput
 }
 
 export type CampaignUncheckedUpdateInput = {
@@ -330,6 +368,8 @@ export type CampaignUncheckedUpdateInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUncheckedUpdateManyWithoutCampaignNestedInput
@@ -341,6 +381,8 @@ export type CampaignCreateManyInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
 }
@@ -350,6 +392,8 @@ export type CampaignUpdateManyMutationInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -360,6 +404,8 @@ export type CampaignUncheckedUpdateManyInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -380,12 +426,16 @@ export type CampaignCountOrderByAggregateInput = {
   template?: Prisma.SortOrder
   language?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type CampaignAvgOrderByAggregateInput = {
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
 }
 
 export type CampaignMaxOrderByAggregateInput = {
@@ -394,6 +444,8 @@ export type CampaignMaxOrderByAggregateInput = {
   template?: Prisma.SortOrder
   language?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -404,12 +456,16 @@ export type CampaignMinOrderByAggregateInput = {
   template?: Prisma.SortOrder
   language?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type CampaignSumOrderByAggregateInput = {
   total?: Prisma.SortOrder
+  sentCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
 }
 
 export type CampaignNullableScalarRelationFilter = {
@@ -492,6 +548,8 @@ export type CampaignCreateWithoutTenantInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
   messages?: Prisma.MessageCreateNestedManyWithoutCampaignInput
@@ -502,6 +560,8 @@ export type CampaignUncheckedCreateWithoutTenantInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutCampaignInput
@@ -542,6 +602,8 @@ export type CampaignScalarWhereInput = {
   template?: Prisma.StringFilter<"Campaign"> | string
   language?: Prisma.StringFilter<"Campaign"> | string
   total?: Prisma.IntFilter<"Campaign"> | number
+  sentCount?: Prisma.IntFilter<"Campaign"> | number
+  failedCount?: Prisma.IntFilter<"Campaign"> | number
   status?: Prisma.EnumCampaignStatusFilter<"Campaign"> | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFilter<"Campaign"> | Date | string
 }
@@ -551,6 +613,8 @@ export type CampaignCreateWithoutMessagesInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutCampaignsInput
@@ -562,6 +626,8 @@ export type CampaignUncheckedCreateWithoutMessagesInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
 }
@@ -587,6 +653,8 @@ export type CampaignUpdateWithoutMessagesInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutCampaignsNestedInput
@@ -598,6 +666,8 @@ export type CampaignUncheckedUpdateWithoutMessagesInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -607,6 +677,8 @@ export type CampaignCreateManyTenantInput = {
   template: string
   language: string
   total?: number
+  sentCount?: number
+  failedCount?: number
   status?: $Enums.CampaignStatus
   createdAt?: Date | string
 }
@@ -616,6 +688,8 @@ export type CampaignUpdateWithoutTenantInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUpdateManyWithoutCampaignNestedInput
@@ -626,6 +700,8 @@ export type CampaignUncheckedUpdateWithoutTenantInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUncheckedUpdateManyWithoutCampaignNestedInput
@@ -636,6 +712,8 @@ export type CampaignUncheckedUpdateManyWithoutTenantInput = {
   template?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
   total?: Prisma.IntFieldUpdateOperationsInput | number
+  sentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumCampaignStatusFieldUpdateOperationsInput | $Enums.CampaignStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -677,10 +755,12 @@ export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   template?: boolean
   language?: boolean
   total?: boolean
+  sentCount?: boolean
+  failedCount?: boolean
   status?: boolean
   createdAt?: boolean
-  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   messages?: boolean | Prisma.Campaign$messagesArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaign"]>
 
@@ -690,6 +770,8 @@ export type CampaignSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   template?: boolean
   language?: boolean
   total?: boolean
+  sentCount?: boolean
+  failedCount?: boolean
   status?: boolean
   createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -701,6 +783,8 @@ export type CampaignSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   template?: boolean
   language?: boolean
   total?: boolean
+  sentCount?: boolean
+  failedCount?: boolean
   status?: boolean
   createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -712,14 +796,16 @@ export type CampaignSelectScalar = {
   template?: boolean
   language?: boolean
   total?: boolean
+  sentCount?: boolean
+  failedCount?: boolean
   status?: boolean
   createdAt?: boolean
 }
 
-export type CampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "template" | "language" | "total" | "status" | "createdAt", ExtArgs["result"]["campaign"]>
+export type CampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "template" | "language" | "total" | "sentCount" | "failedCount" | "status" | "createdAt", ExtArgs["result"]["campaign"]>
 export type CampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   messages?: boolean | Prisma.Campaign$messagesArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampaignIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -732,8 +818,8 @@ export type CampaignIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Campaign"
   objects: {
-    tenant: Prisma.$TenantPayload<ExtArgs>
     messages: Prisma.$MessagePayload<ExtArgs>[]
+    tenant: Prisma.$TenantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -741,6 +827,8 @@ export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     template: string
     language: string
     total: number
+    sentCount: number
+    failedCount: number
     status: $Enums.CampaignStatus
     createdAt: Date
   }, ExtArgs["result"]["campaign"]>
@@ -1137,8 +1225,8 @@ readonly fields: CampaignFieldRefs;
  */
 export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   messages<T extends Prisma.Campaign$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1173,6 +1261,8 @@ export interface CampaignFieldRefs {
   readonly template: Prisma.FieldRef<"Campaign", 'String'>
   readonly language: Prisma.FieldRef<"Campaign", 'String'>
   readonly total: Prisma.FieldRef<"Campaign", 'Int'>
+  readonly sentCount: Prisma.FieldRef<"Campaign", 'Int'>
+  readonly failedCount: Prisma.FieldRef<"Campaign", 'Int'>
   readonly status: Prisma.FieldRef<"Campaign", 'CampaignStatus'>
   readonly createdAt: Prisma.FieldRef<"Campaign", 'DateTime'>
 }

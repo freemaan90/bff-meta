@@ -1,16 +1,16 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/database/prisma.service";
-import { AiService } from "../ai-services/ai-services.service";
-import { InjectQueue } from "@nestjs/bullmq";
-import { Queue } from "bullmq";
-import { Tenant } from "src/generated/client";
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/database/prisma.service';
+import { AiService } from '../ai-services/ai-services.service';
+import { InjectQueue } from '@nestjs/bullmq';
+import { Queue } from 'bullmq';
+import { Tenant } from 'src/generated/client';
 
 @Injectable()
 export class ChatbotService {
   constructor(
     private prisma: PrismaService,
     private ai: AiService,
-    @InjectQueue('send-message') private sendMessageQueue: Queue,
+    @InjectQueue('chatbot-message') private chatbotQueue: Queue,
   ) {}
 
   async handleIncomingMessage(msg: any, tenant: Tenant) {
@@ -21,7 +21,7 @@ export class ChatbotService {
 
     // Normalizar reglas
     const rules = Array.isArray(tenant.chatbotRules)
-      ? tenant.chatbotRules as { contains: string; reply: string }[]
+      ? (tenant.chatbotRules as { contains: string; reply: string }[])
       : [];
 
     // 1. Modo reglas
@@ -45,7 +45,7 @@ export class ChatbotService {
       const aiResponse = await this.ai.generateResponse(
         tenant.chatbotPrompt ?? 'Sos un asistente amable.',
         text,
-        rules
+        rules,
       );
 
       return this.reply(tenant.id, from, aiResponse);
@@ -61,31 +61,44 @@ export class ChatbotService {
     return null;
   }
 
-  private async handleRules(text: string, tenant: Tenant, from: string, rules: any[]) {
+  private async handleRules(
+    text: string,
+    tenant: Tenant,
+    from: string,
+    rules: any[],
+  ) {
     const response = this.tryRules(text, rules);
 
     if (response) {
       return this.reply(tenant.id, from, response);
     }
 
-    return this.reply(tenant.id, from, 'No entendí tu mensaje, ¿podés repetirlo?');
+    return this.reply(
+      tenant.id,
+      from,
+      'No entendí tu mensaje, ¿podés repetirlo?',
+    );
   }
 
-  private async handleAI(text: string, tenant: Tenant, from: string, rules: any[]) {
+  private async handleAI(
+    text: string,
+    tenant: Tenant,
+    from: string,
+    rules: any[],
+  ) {
     const response = await this.ai.generateResponse(
       tenant.chatbotPrompt ?? 'Sos un asistente amable.',
       text,
-      rules
+      rules,
     );
 
     return this.reply(tenant.id, from, response);
   }
 
   private async reply(tenantId: string, to: string, text: string) {
-    await this.sendMessageQueue.add('send-message', {
+    await this.chatbotQueue.add('send-text', {
       tenantId,
       to,
-      type: 'text',
       text,
     });
   }

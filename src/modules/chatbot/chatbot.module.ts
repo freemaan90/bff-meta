@@ -9,6 +9,9 @@ import { AiService } from '../ai-services/ai-services.service';
     BullModule.registerQueue({
       name: 'send-message',
     }),
+    BullModule.registerQueue({
+      name: 'chatbot-message',
+    }),
   ],
   providers: [ChatbotService, PrismaService, AiService],
   exports: [ChatbotService],

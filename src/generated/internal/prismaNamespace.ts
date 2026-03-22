@@ -849,6 +849,8 @@ export const CampaignScalarFieldEnum = {
   template: 'template',
   language: 'language',
   total: 'total',
+  sentCount: 'sentCount',
+  failedCount: 'failedCount',
   status: 'status',
   createdAt: 'createdAt'
 } as const

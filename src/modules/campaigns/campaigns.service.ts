@@ -3,6 +3,8 @@ import { PrismaService } from '../../database/prisma.service';
 import { CreateCampaignDto } from './dto/create-campaign.dto';
 import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
+import { Observable } from 'rxjs';
+import { MessageEvent } from '@nestjs/common';
 
 @Injectable()
 export class CampaignsService {
@@ -47,4 +49,37 @@ export class CampaignsService {
       totalQueued: dto.contacts.length,
     };
   }
+
+streamProgress(campaignId: string): Observable<MessageEvent> {
+  return new Observable((subscriber) => {
+    const interval = setInterval(async () => {
+      const campaign = await this.prisma.campaign.findUnique({
+        where: { id: campaignId },
+      });
+
+      if (!campaign) return;
+
+      const sent = campaign.sentCount ?? 0;
+      const failed = campaign.failedCount ?? 0;
+      const total = campaign.total ?? 0;
+
+      const progress =
+        total > 0 ? Math.round((sent / total) * 100) : 0;
+
+      subscriber.next({
+        data: {
+          status: campaign.status,
+          sent,
+          failed,
+          total,
+          progress,
+        },
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  });
 }
+
+}
+
