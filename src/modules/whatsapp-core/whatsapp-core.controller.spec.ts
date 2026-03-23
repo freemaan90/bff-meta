@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { WhatsappCoreController } from './whatsapp-core.controller';
 import { WhatsappCoreService } from './whatsapp-core.service';
+import { PrismaService } from '../../database/prisma.service';
+import { MetaClient } from '../../integrations/meta/meta.client';
 
 describe('WhatsappCoreController', () => {
   let controller: WhatsappCoreController;
@@ -8,7 +10,11 @@ describe('WhatsappCoreController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [WhatsappCoreController],
-      providers: [WhatsappCoreService],
+      providers: [
+        WhatsappCoreService,
+        { provide: PrismaService, useValue: {} },
+        { provide: MetaClient, useValue: {} },
+      ],
     }).compile();
 
     controller = module.get<WhatsappCoreController>(WhatsappCoreController);

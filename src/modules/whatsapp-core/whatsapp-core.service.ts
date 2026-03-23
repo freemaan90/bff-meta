@@ -1,11 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { MetaClient } from '../../integrations/meta/meta.client';
 import { SendTemplateDto } from './dto/send-template.dto';
-import axios from 'axios';
 
 @Injectable()
 export class WhatsappCoreService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly metaClient: MetaClient,
+  ) {}
 
   async sendTemplate(dto: SendTemplateDto) {
     const tenant = await this.prisma.tenant.findUnique({
@@ -20,49 +23,16 @@ export class WhatsappCoreService {
       throw new Error('Tenant is missing WhatsApp credentials');
     }
 
-    const url = `https://graph.facebook.com/v20.0/${tenant.phoneNumberId}/messages`;
-
-    const payload = {
-      messaging_product: 'whatsapp',
+    const result = await this.metaClient.sendTemplate({
+      accessToken: tenant.accessToken,
+      phoneNumberId: tenant.phoneNumberId,
       to: dto.phone,
-      type: 'template',
-      template: {
-        name: dto.template,
-        language: { code: dto.language },
-        components: dto.variables
-          ? [
-              {
-                type: 'body',
-                parameters: Object.entries(dto.variables).map(
-                  ([key, value]) => ({
-                    type: 'text',
-                    text: String(value),
-                  }),
-                ),
-              },
-            ]
-          : [],
-      },
-    };
+      template: dto.template,
+      language: dto.language,
+      variables: dto.variables,
+    });
 
-    try {
-      const response = await axios.post(url, payload, {
-        headers: {
-          Authorization: `Bearer ${tenant.accessToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      return {
-        messageId: response.data.messages?.[0]?.id ?? null,
-      };
-    } catch (error) {
-      console.error(
-        'WhatsApp API error:',
-        error.response?.data || error.message,
-      );
-      throw new Error('Failed to send WhatsApp message');
-    }
+    return { messageId: result.messageId ?? null };
   }
 
   async sendText(params: { tenantId: string; phone: string; text: string }) {
@@ -78,34 +48,13 @@ export class WhatsappCoreService {
       throw new Error('Tenant is missing WhatsApp credentials');
     }
 
-    const url = `https://graph.facebook.com/v20.0/${tenant.phoneNumberId}/messages`;
-
-    const payload = {
-      messaging_product: 'whatsapp',
+    const result = await this.metaClient.sendText({
+      accessToken: tenant.accessToken,
+      phoneNumberId: tenant.phoneNumberId,
       to: params.phone,
-      type: 'text',
-      text: {
-        body: params.text,
-      },
-    };
+      text: params.text,
+    });
 
-    try {
-      const response = await axios.post(url, payload, {
-        headers: {
-          Authorization: `Bearer ${tenant.accessToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      return {
-        messageId: response.data.messages?.[0]?.id ?? null,
-      };
-    } catch (error) {
-      console.error(
-        'WhatsApp API error:',
-        error.response?.data || error.message,
-      );
-      throw new Error('Failed to send WhatsApp message');
-    }
+    return { messageId: result.messageId ?? null };
   }
 }

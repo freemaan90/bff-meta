@@ -13,6 +13,7 @@ model Tenant {
   name          String
   phoneNumberId String?
   accessToken   String?
+  wabaId        String?
 
   chatbotEnabled Boolean @default(false)
   chatbotMode    String  @default("rules") // "rules" | "ai"
@@ -58,6 +59,7 @@ model Message {
   tenant     Tenant    @relation(fields: [tenantId], references: [id])
 
   phone     String
+  type      String        @default("text")
   messageId String?
   status    MessageStatus @default(QUEUED)
   error     String?

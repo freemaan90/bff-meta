@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Query, Body } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body, UseGuards } from '@nestjs/common';
 import { WebhookService } from './webhooks.service';
+import { WebhookGuard } from './webhook.guard';
 
 @Controller('webhook')
 export class WebhookController {
@@ -15,8 +16,9 @@ export class WebhookController {
     return this.webhookService.verifyWebhook(mode, token, challenge);
   }
 
-  // Recepción de eventos
+  // Recepción de eventos — protegido con verificación de firma HMAC-SHA256
   @Post()
+  @UseGuards(WebhookGuard)
   handleWebhook(@Body() body: any) {
     return this.webhookService.handleWebhook(body);
   }
