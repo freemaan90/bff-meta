@@ -9,9 +9,11 @@ import { WhatsappCoreModule } from './modules/whatsapp-core/whatsapp-core.module
 import { WebhooksModule } from './modules/webhooks/webhooks.module';
 import { CampaignsModule } from './modules/campaigns/campaigns.module';
 import { ChatbotModule } from './modules/chatbot/chatbot.module';
+import { ChatsModule } from './modules/chats/chats.module';
 import { MessagesModule } from './modules/messages/messages.module';
 import { TemplatesModule } from './modules/templates/templates.module';
 import { BullmqModule } from './workers/bullmq.module';
+import { WebsocketModule } from './modules/websocket/websocket.module';
 import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './config/config.validation';
 
@@ -26,8 +28,10 @@ import { validationSchema } from './config/config.validation';
     CampaignsModule,
     ChatbotModule,
     MessagesModule,
+    ChatsModule,
     TemplatesModule,
     BullmqModule,
+    WebsocketModule,
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema,

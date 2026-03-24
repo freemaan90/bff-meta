@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { ChatbotService } from '../chatbot/chatbot.service';
+import { EventsGateway } from '../websocket/events.gateway';
 
 @Injectable()
 export class WebhookService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly chatbotService: ChatbotService,
+    private readonly eventsGateway: EventsGateway,
   ) {}
 
   verifyWebhook(mode: string, token: string, challenge: string) {
@@ -61,6 +63,16 @@ export class WebhookService {
         error,
       },
     });
+
+    const message = await this.prisma.message.findFirst({ where: { messageId } });
+    if (message) {
+      this.eventsGateway.emitToTenant(message.tenantId, 'message_status', {
+        messageId,
+        status: newStatus,
+        tenantId: message.tenantId,
+        ...(error ? { error } : {}),
+      });
+    }
   }
 
   async handleIncomingMessage(msg: any) {
@@ -92,6 +104,14 @@ export class WebhookService {
         raw: msg,
       },
       update: {}, // no actualizamos nada, solo evitamos duplicados
+    });
+
+    this.eventsGateway.emitToTenant(tenant.id, 'incoming_message', {
+      messageId,
+      from,
+      type,
+      text,
+      tenantId: tenant.id,
     });
 
     // Chatbot
