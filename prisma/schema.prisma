@@ -11,14 +11,15 @@ datasource db {
 model Tenant {
   id            String  @id @default(uuid())
   name          String
+  useSharedMeta Boolean @default(true)
   phoneNumberId String?
   accessToken   String?
   wabaId        String?
 
   chatbotEnabled Boolean @default(false)
-  chatbotMode    String  @default("rules") // "rules" | "ai"
-  chatbotRules   Json? // [{ contains: "hola", reply: "Hola! ¿Cómo estás?" }]
-  chatbotPrompt  String? // prompt base para IA
+  chatbotMode    String  @default("rules") // "rules" | "ai" | "hybrid"
+  chatbotRules   Json?
+  chatbotPrompt  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -27,6 +28,70 @@ model Tenant {
   messages         Message[]
   campaigns        Campaign[]
   apiKeys          ApiKey[]
+  users            User[]
+  subscription     Subscription?
+  billingRecords   BillingRecord[]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  email     String   @unique
+  password  String
+  role      UserRole @default(AGENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  AGENT
+}
+
+model Subscription {
+  id                 String             @id @default(uuid())
+  tenantId           String             @unique
+  tenant             Tenant             @relation(fields: [tenantId], references: [id])
+  plan               SubscriptionPlan   @default(FREE_TRIAL)
+  status             SubscriptionStatus @default(ACTIVE)
+  trialEndsAt        DateTime
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  monthlyFee         Float              @default(0)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+}
+
+enum SubscriptionPlan {
+  FREE_TRIAL
+  MONTHLY
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+}
+
+model MetaMessagePrice {
+  id          String   @id @default(uuid())
+  countryCode String
+  category    String   // "marketing" | "utility" | "authentication"
+  priceUsd    Float
+  updatedAt   DateTime @updatedAt
+
+  @@unique([countryCode, category])
+}
+
+model BillingRecord {
+  id        String   @id @default(uuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  messageId String   @unique
+  metaCost  Float
+  period    String   // "2026-03"
+  createdAt DateTime @default(now())
 }
 
 model ApiKey {

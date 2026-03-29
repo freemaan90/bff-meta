@@ -52,6 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Tenant: 'Tenant',
+  User: 'User',
+  Subscription: 'Subscription',
+  MetaMessagePrice: 'MetaMessagePrice',
+  BillingRecord: 'BillingRecord',
   ApiKey: 'ApiKey',
   Campaign: 'Campaign',
   Message: 'Message',
@@ -77,8 +81,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TenantScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  useSharedMeta: 'useSharedMeta',
   phoneNumberId: 'phoneNumberId',
   accessToken: 'accessToken',
+  wabaId: 'wabaId',
   chatbotEnabled: 'chatbotEnabled',
   chatbotMode: 'chatbotMode',
   chatbotRules: 'chatbotRules',
@@ -88,6 +94,58 @@ export const TenantScalarFieldEnum = {
 } as const
 
 export type TenantScalarFieldEnum = (typeof TenantScalarFieldEnum)[keyof typeof TenantScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const SubscriptionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  plan: 'plan',
+  status: 'status',
+  trialEndsAt: 'trialEndsAt',
+  currentPeriodStart: 'currentPeriodStart',
+  currentPeriodEnd: 'currentPeriodEnd',
+  monthlyFee: 'monthlyFee',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+export const MetaMessagePriceScalarFieldEnum = {
+  id: 'id',
+  countryCode: 'countryCode',
+  category: 'category',
+  priceUsd: 'priceUsd',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MetaMessagePriceScalarFieldEnum = (typeof MetaMessagePriceScalarFieldEnum)[keyof typeof MetaMessagePriceScalarFieldEnum]
+
+
+export const BillingRecordScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  messageId: 'messageId',
+  metaCost: 'metaCost',
+  period: 'period',
+  createdAt: 'createdAt'
+} as const
+
+export type BillingRecordScalarFieldEnum = (typeof BillingRecordScalarFieldEnum)[keyof typeof BillingRecordScalarFieldEnum]
 
 
 export const ApiKeyScalarFieldEnum = {
@@ -120,6 +178,7 @@ export const MessageScalarFieldEnum = {
   campaignId: 'campaignId',
   tenantId: 'tenantId',
   phone: 'phone',
+  type: 'type',
   messageId: 'messageId',
   status: 'status',
   error: 'error',

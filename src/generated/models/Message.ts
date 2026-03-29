@@ -29,6 +29,7 @@ export type MessageMinAggregateOutputType = {
   campaignId: string | null
   tenantId: string | null
   phone: string | null
+  type: string | null
   messageId: string | null
   status: $Enums.MessageStatus | null
   error: string | null
@@ -41,6 +42,7 @@ export type MessageMaxAggregateOutputType = {
   campaignId: string | null
   tenantId: string | null
   phone: string | null
+  type: string | null
   messageId: string | null
   status: $Enums.MessageStatus | null
   error: string | null
@@ -53,6 +55,7 @@ export type MessageCountAggregateOutputType = {
   campaignId: number
   tenantId: number
   phone: number
+  type: number
   messageId: number
   status: number
   error: number
@@ -68,6 +71,7 @@ export type MessageMinAggregateInputType = {
   campaignId?: true
   tenantId?: true
   phone?: true
+  type?: true
   messageId?: true
   status?: true
   error?: true
@@ -80,6 +84,7 @@ export type MessageMaxAggregateInputType = {
   campaignId?: true
   tenantId?: true
   phone?: true
+  type?: true
   messageId?: true
   status?: true
   error?: true
@@ -92,6 +97,7 @@ export type MessageCountAggregateInputType = {
   campaignId?: true
   tenantId?: true
   phone?: true
+  type?: true
   messageId?: true
   status?: true
   error?: true
@@ -178,6 +184,7 @@ export type MessageGroupByOutputType = {
   campaignId: string | null
   tenantId: string
   phone: string
+  type: string
   messageId: string | null
   status: $Enums.MessageStatus
   error: string | null
@@ -212,6 +219,7 @@ export type MessageWhereInput = {
   campaignId?: Prisma.StringNullableFilter<"Message"> | string | null
   tenantId?: Prisma.StringFilter<"Message"> | string
   phone?: Prisma.StringFilter<"Message"> | string
+  type?: Prisma.StringFilter<"Message"> | string
   messageId?: Prisma.StringNullableFilter<"Message"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"Message"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"Message"> | string | null
@@ -227,6 +235,7 @@ export type MessageOrderByWithRelationInput = {
   campaignId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   messageId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -245,6 +254,7 @@ export type MessageWhereUniqueInput = Prisma.AtLeast<{
   campaignId?: Prisma.StringNullableFilter<"Message"> | string | null
   tenantId?: Prisma.StringFilter<"Message"> | string
   phone?: Prisma.StringFilter<"Message"> | string
+  type?: Prisma.StringFilter<"Message"> | string
   messageId?: Prisma.StringNullableFilter<"Message"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"Message"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"Message"> | string | null
@@ -260,6 +270,7 @@ export type MessageOrderByWithAggregationInput = {
   campaignId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   messageId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -279,6 +290,7 @@ export type MessageScalarWhereWithAggregatesInput = {
   campaignId?: Prisma.StringNullableWithAggregatesFilter<"Message"> | string | null
   tenantId?: Prisma.StringWithAggregatesFilter<"Message"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Message"> | string
+  type?: Prisma.StringWithAggregatesFilter<"Message"> | string
   messageId?: Prisma.StringNullableWithAggregatesFilter<"Message"> | string | null
   status?: Prisma.EnumMessageStatusWithAggregatesFilter<"Message"> | $Enums.MessageStatus
   error?: Prisma.StringNullableWithAggregatesFilter<"Message"> | string | null
@@ -290,6 +302,7 @@ export type MessageScalarWhereWithAggregatesInput = {
 export type MessageCreateInput = {
   id?: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -305,6 +318,7 @@ export type MessageUncheckedCreateInput = {
   campaignId?: string | null
   tenantId: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -316,6 +330,7 @@ export type MessageUncheckedCreateInput = {
 export type MessageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -331,6 +346,7 @@ export type MessageUncheckedUpdateInput = {
   campaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -344,6 +360,7 @@ export type MessageCreateManyInput = {
   campaignId?: string | null
   tenantId: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -355,6 +372,7 @@ export type MessageCreateManyInput = {
 export type MessageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -368,6 +386,7 @@ export type MessageUncheckedUpdateManyInput = {
   campaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -391,6 +410,7 @@ export type MessageCountOrderByAggregateInput = {
   campaignId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
@@ -404,6 +424,7 @@ export type MessageMaxOrderByAggregateInput = {
   campaignId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
@@ -416,6 +437,7 @@ export type MessageMinOrderByAggregateInput = {
   campaignId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
@@ -514,6 +536,7 @@ export type EnumMessageStatusFieldUpdateOperationsInput = {
 export type MessageCreateWithoutTenantInput = {
   id?: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -527,6 +550,7 @@ export type MessageUncheckedCreateWithoutTenantInput = {
   id?: string
   campaignId?: string | null
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -569,6 +593,7 @@ export type MessageScalarWhereInput = {
   campaignId?: Prisma.StringNullableFilter<"Message"> | string | null
   tenantId?: Prisma.StringFilter<"Message"> | string
   phone?: Prisma.StringFilter<"Message"> | string
+  type?: Prisma.StringFilter<"Message"> | string
   messageId?: Prisma.StringNullableFilter<"Message"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"Message"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"Message"> | string | null
@@ -580,6 +605,7 @@ export type MessageScalarWhereInput = {
 export type MessageCreateWithoutCampaignInput = {
   id?: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -593,6 +619,7 @@ export type MessageUncheckedCreateWithoutCampaignInput = {
   id?: string
   tenantId: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -631,6 +658,7 @@ export type MessageCreateManyTenantInput = {
   id?: string
   campaignId?: string | null
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -642,6 +670,7 @@ export type MessageCreateManyTenantInput = {
 export type MessageUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -655,6 +684,7 @@ export type MessageUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   campaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -667,6 +697,7 @@ export type MessageUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   campaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -679,6 +710,7 @@ export type MessageCreateManyCampaignInput = {
   id?: string
   tenantId: string
   phone: string
+  type?: string
   messageId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
@@ -690,6 +722,7 @@ export type MessageCreateManyCampaignInput = {
 export type MessageUpdateWithoutCampaignInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -703,6 +736,7 @@ export type MessageUncheckedUpdateWithoutCampaignInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -715,6 +749,7 @@ export type MessageUncheckedUpdateManyWithoutCampaignInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -730,6 +765,7 @@ export type MessageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   campaignId?: boolean
   tenantId?: boolean
   phone?: boolean
+  type?: boolean
   messageId?: boolean
   status?: boolean
   error?: boolean
@@ -745,6 +781,7 @@ export type MessageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   campaignId?: boolean
   tenantId?: boolean
   phone?: boolean
+  type?: boolean
   messageId?: boolean
   status?: boolean
   error?: boolean
@@ -760,6 +797,7 @@ export type MessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   campaignId?: boolean
   tenantId?: boolean
   phone?: boolean
+  type?: boolean
   messageId?: boolean
   status?: boolean
   error?: boolean
@@ -775,6 +813,7 @@ export type MessageSelectScalar = {
   campaignId?: boolean
   tenantId?: boolean
   phone?: boolean
+  type?: boolean
   messageId?: boolean
   status?: boolean
   error?: boolean
@@ -783,7 +822,7 @@ export type MessageSelectScalar = {
   updatedAt?: boolean
 }
 
-export type MessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "tenantId" | "phone" | "messageId" | "status" | "error" | "variables" | "createdAt" | "updatedAt", ExtArgs["result"]["message"]>
+export type MessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "tenantId" | "phone" | "type" | "messageId" | "status" | "error" | "variables" | "createdAt" | "updatedAt", ExtArgs["result"]["message"]>
 export type MessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.Message$campaignArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -808,6 +847,7 @@ export type $MessagePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     campaignId: string | null
     tenantId: string
     phone: string
+    type: string
     messageId: string | null
     status: $Enums.MessageStatus
     error: string | null
@@ -1243,6 +1283,7 @@ export interface MessageFieldRefs {
   readonly campaignId: Prisma.FieldRef<"Message", 'String'>
   readonly tenantId: Prisma.FieldRef<"Message", 'String'>
   readonly phone: Prisma.FieldRef<"Message", 'String'>
+  readonly type: Prisma.FieldRef<"Message", 'String'>
   readonly messageId: Prisma.FieldRef<"Message", 'String'>
   readonly status: Prisma.FieldRef<"Message", 'MessageStatus'>
   readonly error: Prisma.FieldRef<"Message", 'String'>

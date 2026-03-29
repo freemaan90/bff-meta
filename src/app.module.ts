@@ -14,6 +14,8 @@ import { MessagesModule } from './modules/messages/messages.module';
 import { TemplatesModule } from './modules/templates/templates.module';
 import { BullmqModule } from './workers/bullmq.module';
 import { WebsocketModule } from './modules/websocket/websocket.module';
+import { UsersModule } from './modules/users/users.module';
+import { BillingModule } from './modules/billing/billing.module';
 import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './config/config.validation';
 
@@ -32,6 +34,8 @@ import { validationSchema } from './config/config.validation';
     TemplatesModule,
     BullmqModule,
     WebsocketModule,
+    UsersModule,
+    BillingModule,
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema,

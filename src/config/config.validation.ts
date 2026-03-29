@@ -2,6 +2,7 @@ import * as Joi from 'joi';
 
 export const validationSchema = Joi.object({
   DATABASE_URL: Joi.string().required(),
+  JWT_SECRET: Joi.string().min(16).required(),
   REDIS_HOST: Joi.string().required(),
   REDIS_PORT: Joi.number().integer().min(1).max(65535).required(),
   WHATSAPP_VERIFY_TOKEN: Joi.string().required(),

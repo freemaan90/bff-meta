@@ -9,6 +9,10 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Tenant'
+export type * from './models/User'
+export type * from './models/Subscription'
+export type * from './models/MetaMessagePrice'
+export type * from './models/BillingRecord'
 export type * from './models/ApiKey'
 export type * from './models/Campaign'
 export type * from './models/Message'
